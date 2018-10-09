@@ -1,0 +1,32 @@
+﻿"Name"     = 'Gramatica EXA 869 - Classe'
+"Author"   = 'Valmir Vinicius de Almeida Santos'
+"Version"  = '1.0'
+"About"    = 'Gramática para reconhecimento de uma classe'
+
+"Start Symbol" = <Class Declaration>
+
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+Identifier    = {Letter}({AlphaNumeric} | [_])*
+
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Class Declaration> ::= 'class' <Class Identification> 
+<Class Identification> ::= Identifier <Class Heritage> '{' <Class Body> '}'
+<Class Heritage> ::= 'extends' Identifier | <>
+<Class Body> ::= <Class Attributes> <Class Constants> <Class Methods>
+<Class Attributes> ::= <>
+<Class Constants> ::= <>
+<Class Methods> ::= <>
+
