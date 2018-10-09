@@ -1,0 +1,34 @@
+"Name" = 'ConstantDeclaration'
+"Author" = 'Nadine Marques'
+"About" = 'Parte da gramatica - Declaracao de constantes'
+
+"Case Sensitive" = False
+"Start Symbol" = <Declaration>
+
+<Declaration> ::= <ConstantDeclaration> 
+                
+
+<ConstantDeclaration> ::= const '{' <Constants> '}'
+                       
+<Constants> ::= <Constant> 
+             | <Constant> <Constants>
+
+<Constant> ::= <Type> <Atribuition>
+              | ',' <Atribuition>
+              
+<Type> ::= int 
+         | float 
+         | double
+         | bool
+         | string 
+
+<Atribuition> ::= <id> '=' <value>
+
+<id> ::= id
+
+<value> ::= 1
+
+
+
+
+
