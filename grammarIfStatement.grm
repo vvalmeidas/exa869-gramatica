@@ -1,7 +1,6 @@
-"Name"     = 'Enter the name of the grammar'
-"Author"   = 'Enter your name'
-"Version"  = 'The version of the grammar and/or language'
-"About"    = 'A short description of the grammar'
+"Author"   = 'Bernardo Rosa'
+"Version"  = '1.0'
+"About"    = 'Regras relacionadas a expressões lógicas e if statement'
 
 "Start Symbol" = <Program>
 
