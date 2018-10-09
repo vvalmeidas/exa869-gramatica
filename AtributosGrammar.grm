@@ -1,0 +1,13 @@
+
+"Name"      = 'Atributos'
+"Author"    = 'Gabriel Sacramento'
+"About"     = 'Define as regras para chamada de atributos'
+
+"Start Symbol" = <Atributos>
+             
+Identifier = {Letter}({AlphaNumeric} | [_])*
+                  
+<Atributos> ::= <Class> '.' <Variables>
+<Class> ::= Identifier
+<Variables> ::= Identifier                      
+
