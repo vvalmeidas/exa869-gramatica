@@ -1,0 +1,36 @@
+﻿"Name" = 'Expressions'
+"Author" = 'Manuella Vieira'
+"About" = 'Gramática para reconhecimento de expressões relacionais, lógicas e aritméticas'
+
+
+"Start Symbol" = <Exp>
+              
+
+Identifier =  {Letter} ({AlphaNumeric} | '_')*
+Number = {Digit}+('.'{Digit}+)?
+RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
+
+<Exp> ::= <Rel Exp> '&&' <Exp>
+            | <Rel Exp> '||' <Exp>
+            | <Rel Exp>  
+
+<Rel Exp>::= <Add Exp> RelationalOperator <Exp>
+               |  <Add Exp>
+
+<Add Exp>     ::= <Mult Exp> '+' <Add Exp>
+               |  <Mult Exp> '-' <Add Exp>
+               |  <Mult Exp>
+
+<Mult Exp>    ::= <Neg Exp> '*' <Mult Exp>
+               |  <Neg Exp> '/' <Mult Exp>
+               |  <Neg Exp>
+
+<Neg Exp>  ::= '-' <Value>
+               |  <Value>
+               | '!' <Value>
+               | '++' <Value>
+               | '--' <Value> 
+
+<Value>       ::= Identifier
+               |  Number
+               |  '(' <Exp> ')'
