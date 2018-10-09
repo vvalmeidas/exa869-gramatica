@@ -1,0 +1,51 @@
+﻿"Name" = 'Gramatica - WriteDeclaration'
+"Author" = 'Aloisio Junior'
+"Version"  = '1.0'
+"About" = 'Gramática para a declaração do comando write'
+        
+"Case Sensitive" = False
+                 
+"Start Symbol" = <Declaration>
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {Printable} + {HT} - ["\]
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+Symbols = {Printable}
+
+BodyCharacters = ({String Chars} | '\' {Printable} )*
+               
+Number = ({Digit})*
+
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below               
+<Declaration> ::= <WriteDeclaration> 
+               
+
+<ConstantDeclaration> ::= write '(' <Expressions> ')'';'
+                       
+<Expressions> ::= <Expression> 
+             | <Expression> <Expression>
+             
+<Expression> ::= <BodyExpression>
+              | ',' <BodyExpression>
+              
+<BodyExpression> ::= <CadeOfCharacters>
+                  | <idConstant>
+                  | <idVariable>
+                  | <GetAttribute> ! NECESSÁRIO DA IMPLEMENTAÇÃO DE OUTRO MEMBRO
+                  | <idVariable> '['Number']'
+                  | <idVariable>'['Number']''['Number']'
+                  
+<CadeOfCharacters> ::= '"'BodyCharacters'"'
+                    
