@@ -1,0 +1,39 @@
+﻿"Name"     = 'Grammar while'
+"Author"   = 'Gabriel Gomes'
+"Version"  = '1'
+"About"    = 'Gramática da estrutura do while'
+
+"Start Symbol" = <Program>
+
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+Id = {Letter}('_'|{AlphaNumeric})*
+RelationalOp = ('>' | '<' | '<=' | '>=' | '==' | '!=')
+Number = {Digit}+('.'{Digit}+)?
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Program> ::= 'while' <Condition>
+<Condition> ::= '(' <Argument> ')' '{' <Body> '}' | '(''!' <Argument> ')' '{' <Body> '}'
+<Argument> ::=  <Value> RelationOp <Value> <Add term> | Id     
+<Add term> ::= '&&'<Value> <Add term> | '||'<Value> <Add term> | <> 
+<Value> ::= Id | Number
+         | <Operation>
+<Operation> ::= <>
+<Body> ::= <>
+           
+
+
+
+
+
