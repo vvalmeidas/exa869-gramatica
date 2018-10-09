@@ -35,17 +35,17 @@ Number = ({Digit})*
 <ConstantDeclaration> ::= write '(' <Expressions> ')'';'
                        
 <Expressions> ::= <Expression> 
-             | <Expression> <Expression>
+             | <Expression> <Expressions>
              
 <Expression> ::= <BodyExpression>
               | ',' <BodyExpression>
               
 <BodyExpression> ::= <CadeOfCharacters>
-                  | <idConstant>
-                  | <idVariable>
+                  | <valueConstant>
+                  | <valueVariable>
                   | <GetAttribute> ! NECESSÁRIO DA IMPLEMENTAÇÃO DE OUTRO MEMBRO
-                  | <idVariable> '['Number']'
-                  | <idVariable>'['Number']''['Number']'
+                  | <valeuVariable> '['Number']'
+                  | <valeuVariable>'['Number']''['Number']'
                   
 <CadeOfCharacters> ::= '"'BodyCharacters'"'
                     
