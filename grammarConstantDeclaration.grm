@@ -1,17 +1,29 @@
 "Name" = 'ConstantDeclaration'
 "Author" = 'Nadine Marques'
-"About" = 'Parte da gramatica - Declaracao de constantes'
+"About" = 'Declaracao de constantes'
 
-"Case Sensitive" = False
-"Start Symbol" = <Declaration>
+"Start Symbol" = ConstantDeclaration
 
-<Declaration> ::= <ConstantDeclaration> 
-                
+! ----------------------------------------------------------------- Sets                   
+{String Ch}      = {Printable} - ["]
+
+{Char Ch}        = {Printable} - ['']
+                 
+! ----------------------------------------------------------------- Terminals
+               
+Identifier = {Letter}({AlphaNumeric} | [_])*
+
+Number = {Digit}+('.'{Digit}+)?
+       
+CadeCaracters = '"' ({String Ch}  | {Char Ch})* '"'
+              
+! ----------------------------------------------------------------- Rules
 
 <ConstantDeclaration> ::= const '{' <Constants> '}'
                        
-<Constants> ::= <Constant> 
-             | <Constant> <Constants>
+<Constants> ::= <Constant> <Const>
+             
+<Const> ::= <> | <Constants>
 
 <Constant> ::= <Type> <Atribuition>
               | ',' <Atribuition>
@@ -22,13 +34,7 @@
          | bool
          | string 
 
-<Atribuition> ::= <id> '=' <value>
+<Atribuition> ::= Identifier '=' <value>
 
-<id> ::= id
-
-<value> ::= 1
-
-
-
-
+<value> ::= Number | 'true' | 'false' | CadeCaracters
 
