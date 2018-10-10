@@ -1,0 +1,33 @@
+﻿"Start Symbol" = <declaracao_metodos>
+"Case Sensitive" = true
+                 
+{String Chars} = {Printable} + {HT} - ["]
+{Chars} = {Printable} + {HT} - ['']                  
+        
+Identifier = {Letter}({Letter}|{AlphaNumeric}|'_')*
+Cadeia = '"'{String Chars}'"'
+Numero = {Number} + ('.' {Number} +)?
+Char = ''{Chars}''     
+
+<lambda> ::=          
+          
+!Declaração de metodo          
+
+<declaracao_metodos> ::= <tipo_metodo> Identifier <complemento> | 'void' Identifier '(' <declaracao_parametros> ')' '{' <conteudo_metodo> '}' 
+<complemento> ::= '(' <declaracao_parametros> ')''{' <conteudo_metodo> 'return' <retorno> '}'
+<tipo_metodo> ::= 'int' | 'float' | 'bool' | 'string'               
+               
+!declaração de parametros
+
+<declaracao_parametros> ::= <tipo> Identifier <vetor> <vetor> <parametros>| <lambda>
+<parametros> ::= ',' <tipo> Identifier <vetor> <vetor> <parametros> | <lambda>
+<vetor> ::= '[' Numero ']' | <lambda>
+<tipo> ::= 'int' | 'float' | 'bool' | 'string'
+        
+!só pra testar
+
+<conteudo_metodo> ::= <comando> <conteudo_metodo> | <lambda>
+<comando> ::= Identifier | 'read' | 'write' | 'if' | 'while' | 'variables' | 'const' 
+           
+!só pra testar
+<retorno> ::= Identifier ';'| Cadeia ';'| Numero ';'| Char ';'
