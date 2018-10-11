@@ -1,0 +1,17 @@
+﻿! Welcome to GOLD Parser Builder 5.2
+"Name"    = Read
+"Author"  = Natália 
+"Version" = Example
+"About"   = This grammar demonstrates Reading Declaration
+
+"Case Sensitive" = True
+"Start Symbol"   = <Declaration>
+                 
+Id = {Letter}{AlphaNumeric}*
+Int = {Digit}+
+   
+<Declaration>   ::= 'read' '(' <Reading_1> ')'';' 
+<Reading_1> ::= Id <Reading_2> 
+<Reading_2> ::= '['Int']'<Reading_3> | <Reading_4>
+<Reading_3> ::='['Int']'<Reading_4>  | <Reading_4>          
+<Reading_4> ::= ',' <Reading_1> | <>
