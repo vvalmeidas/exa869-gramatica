@@ -26,6 +26,5 @@ Identifier    = {Letter}({AlphaNumeric} | [_])*
 <Class Identification> ::= Identifier <Class Heritage> '{' <Class Body> '}'
 <Class Heritage> ::= 'extends' Identifier | <>
 <Class Body> ::= <Class Attributes> <Class Methods>
-<Class Attributes> ::= <>
-<Class Methods> ::= <>
-
+<Class Attributes> ::= 'variables { int a, b, c; float d, e, f; }' | <>
+<Class Methods> ::= ' method m1 { int x = 1; return x; }' | <>
