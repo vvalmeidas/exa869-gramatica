@@ -1,0 +1,28 @@
+
+"Name"    = 'MethodCalls'
+"Author"  = 'Almir Neto'
+"About"   = 'This piece of a grammar will identifier method calls'
+
+"Start Symbol" = <Call>
+
+
+! The identifier is defined as a single letter followed by zero or more
+! alphumeric characters
+
+Identifier  = {Letter}{Alphanumeric}*
+Number = {Alphanumeric}+
+
+
+        <Call>   ::= Identifier<Complement>
+        
+        <Complement> ::= '.'Identifier<Complement1> | <Complement1>
+                      
+        <Complement1> ::= '('<Param>');'<Complement2>
+        <Complement2> ::= <> | <Call>
+   
+        <Param> ::= Identifier<MoreParam>
+        <MoreParam> ::= ','<Comma> | <Comma> | <>
+        <Comma> ::= <Param> |<Array> | <DoubleArray>
+        <Array> ::= '['Number']'
+        <DoubleArray> ::= '['Number']''['Number']'
+
