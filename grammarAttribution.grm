@@ -1,4 +1,4 @@
-"Name"    = VariablesDeclaration
+    "Name"    = VariablesDeclaration
 "Author"  = Adriel  
 "Version" = Example
 "About"   = This grammar demonstrates Variables Declaration
@@ -6,86 +6,26 @@
 "Start Symbol"   = <Attribution>
 
 Identifier =  {Letter} ({AlphaNumeric} | '_')*
-Number = {Digit}+('.'{Digit}+)?
 FloatNumber = {Digit}+('.'{Digit}+)+
 IntegerNumber = {Digit}+
 RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
+
                            
 
 <Attribution> ::= Identifier <Attribution2>               
 <Attribution2> ::= '=' <Attribution3>                   
-<Attribution3>  ::= <Exp> | <Call>  | Identifier  
+<Attribution3>  ::=  <Call> ';' | Identifier ';'
                  
 
 
-<Call>   ::= Identifier <Complement>        
-<Complement> ::= '.'Identifier<Complement1> | <Complement1>                      
-<Complement1> ::= '('<Param>');'<Complement2>
-<Complement2> ::= <> | <Call>   
-<Param> ::= Identifier <MoreParam>
-<MoreParam> ::= ','<Comma> | <Comma> | <>
-<Comma> ::= <Param> |<Array> | <DoubleArray>
-<Array> ::= '['Number']'
-<DoubleArray> ::= '['Number']''['Number']'         
+<Call>   ::= Identifier<Complement>        
+<Complement> ::= '.'Identifier<Complement> | <Complement1>
+<Complement1> ::= '('<Param>')'  
+<Param> ::=  Identifier<x><MoreParam> | <>            
+<MoreParam> ::= ','<Param> | <>
+<x> ::= <> |<Array> | <DoubleArray>
+<Array> ::= '['IntegerNumber']'
+<DoubleArray> ::= '['IntegerNumber']''['IntegerNumber']'        
                                   
 
 
-
- <Exp> ::= <Rel Exp> '&&' <Exp>
-            | <Rel Exp> '||' <Exp>
-            | <Rel Exp>  
-<Expression> ::= <And Exp> <A>
- <Rel Exp>::= <Add Exp> RelationalOperator <Exp>
-               |  <Add Exp>
-<A> ::= '||' <Expression>
-        | <> 
-            
-<And Exp> ::= <Rel Exp> <B>   
- <Add Exp>     ::= <Mult Exp> '+' <Add Exp>
-               |  <Mult Exp> '-' <Add Exp>
-               |  <Mult Exp>
-<B> ::= '&&' <And Exp>
-        | <> 
- <Mult Exp>    ::= <Neg Exp> '*' <Mult Exp>
-               |  <Neg Exp> '/' <Mult Exp>
-               |  <Neg Exp>
-<Rel Exp>::= <Add Exp> <C>
-            
-<C> ::= RelationalOperator <Rel Exp> 
-        | <>
- <Neg Exp>  ::= '-' <Value>
-               |  <Value>
-<Add Exp> ::= <Mult Exp> <D>
- <D> ::= '+' <Add Exp> 
-        | '-' <Add Exp>
-        | <>
- <Mult Exp> ::= <Neg Exp> <E>
- <E> ::= '*' <Mult Exp> 
-        | '/' <Mult Exp>
-        | <>
- <Neg Exp>  ::= '-' <F>
-               |  <Value> <G>
-               | '!' <Value>
-               | '++' <Value>
-               | '--' <Value> 
-                       
-<F> ::= '-' <Value> 
-        | <Value>
- <G> ::= '--' 
-     | '++' 
-     | <>
-     
- <Value> ::= Identifier
-            | IntegerNumber
-            | FloatNumber
-            | <Vector>
-            |  '(' <Expression> ')'
- <Vector> ::= Identifier '['<Index>']' <Matrix>            
- <Value>       ::= Identifier
-               |  Number
-               |  '(' <Exp> ')'
-<Index> ::= Identifier 
-         | IntegerNumber
-    
-<Matrix> ::= '['<Index>']'
-            | <>
