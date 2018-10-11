@@ -1,0 +1,17 @@
+"Name"    = VariablesDeclaration
+"Author"  = Adriel  
+"About"   = This grammar demonstrates Variables Declaration
+"Case Sensitive" = True
+"Start Symbol"   = <Declaration>
+                 
+
+Identifier  = {Letter} ({AlphaNumeric} | '_')*
+Type  = ('int' | 'float' | 'bool' | 'string')
+      
+
+<Declaration>   ::= 'Variables' '{' <Variable> '}' 
+<Variable>    ::= <Type> <Variable2>
+<Variable2>    ::= <Name> <Variable3>
+<Variable3>    ::= <Variable> | <>               
+<Name>       ::= Id <Name2>                           
+<Name2>      ::= ',' <Name> | ';'
