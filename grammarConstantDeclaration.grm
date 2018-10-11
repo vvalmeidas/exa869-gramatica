@@ -6,16 +6,14 @@
 
 ! ----------------------------------------------------------------- Sets                   
 {String Ch}      = {Printable} - ["]
-
-{Char Ch}        = {Printable} - ['']
-                 
+              
 ! ----------------------------------------------------------------- Terminals
                
 Identifier = {Letter}({AlphaNumeric} | [_])*
 
 Number = {Digit}+('.'{Digit}+)?
        
-CadeCaracters = '"' ({String Ch}  | {Char Ch})* '"'
+CadeCaracters = '"' ({String Ch})* '"'
               
 ! ----------------------------------------------------------------- Rules
 
