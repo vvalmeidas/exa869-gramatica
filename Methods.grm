@@ -10,7 +10,7 @@
 ! alphumeric characters
 
 Identifier  = {Letter}{Alphanumeric}*
-Number = {Alphanumeric}+
+Number = {Number}+
 
 
         <Call>   ::= Identifier<Complement>
