@@ -16,6 +16,7 @@
 
 Id = {Letter}('_'|{AlphaNumeric})*
 RelationalOp = ('>' | '<' | '<=' | '>=' | '==' | '!=')
+LogicOp = ('&&' | '||') 
 Number = {Digit}+('.'{Digit}+)?
 
 ! -------------------------------------------------
@@ -23,17 +24,31 @@ Number = {Digit}+('.'{Digit}+)?
 ! -------------------------------------------------
 
 ! The grammar starts below
-<Program> ::= 'while' <Condition>
-<Condition> ::= '(' <Argument> ')' '{' <Body> '}' | '(''!' <Argument> ')' '{' <Body> '}'
-<Argument> ::=  <Value> RelationOp <Value> <Add term> | Id     
-<Add term> ::= '&&'<Value> <Add term> | '||'<Value> <Add term> | <> 
-<Value> ::= Id | Number
-         | <Operation>
-<Operation> ::= <>
+<Program> ::= 'while(' <Argument> '){' <Body> '}'
+<Argument> ::= '!'<Condition> | <Condition>
+<Condition> ::= '(!'<RelationOperation>')'LogicOp<Condition>              
+             | '!('<RelationOperation>')'LogicOp<Condition> 
+             | '('<RelationOperation>')'LogicOp<Condition>    
+             | '(!'<RelationOperation>')'   
+             | '!('<RelationOperation>')'
+             | '('<RelationOperation>')' 
+             | '(!'<Condition>')'LogicOp<Condition>              
+             | '!('<Condition>')'LogicOp<Condition> 
+             | '('<Condition>')'LogicOp<Condition> 
+             | '(!'<Condition>')'   
+             | '!('<Condition>')'
+             | '('<Condition>')'  
+             | <RelationOperation> 
+             | Id
+<RelationOperation> ::= <AritmeticOperation> RelationalOp <AritmeticOperation> 
+                       |<AritmeticOperation> RelationalOp Number
+                       |<AritmeticOperation> RelationalOp Id 
+                       | Number RelationalOp Number 
+                       | Number RelationalOp <AritmeticOperation> 
+                       | Number RelationalOp Id 
+                       | Id RelationalOp Id 
+                       | Id RelationalOp <AritmeticOperation> 
+                       | Id RelationalOp Number
+<AritmeticOperation> ::= <> !FALTA COLOCAR A PARTE DE OPERAÇÕES ARITMÉTICAS
+
 <Body> ::= <>
-           
-
-
-
-
-
