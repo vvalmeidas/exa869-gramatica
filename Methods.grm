@@ -13,16 +13,16 @@ Identifier  = {Letter}{Alphanumeric}*
 Number = {Number}+
 
 
-        <Call>   ::= Identifier<Complement>
+        <Call>   ::= Identifier<Complement>        
+        <Complement> ::= '.'Identifier<Complement> | <Complement1>                      
+        <Complement1> ::= '('<Param>')' <Complement2> 
+        <Complement2> ::= ';'|<>        
         
-        <Complement> ::= '.'Identifier<Complement1> | <Complement1>
-                      
-        <Complement1> ::= '('<Param>');'<Complement2>
-        <Complement2> ::= <> | <Call>
    
-        <Param> ::= Identifier<MoreParam>
-        <MoreParam> ::= ','<Comma> | <Comma> | <>
-        <Comma> ::= <Param> |<Array> | <DoubleArray>
+        <Param> ::=  Identifier<x><MoreParam> | <>            
+        <MoreParam> ::= ','<Param> | <>
+        <x> ::= <> |<Array> | <DoubleArray>
         <Array> ::= '['Number']'
         <DoubleArray> ::= '['Number']''['Number']'
+
 
