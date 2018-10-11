@@ -25,8 +25,7 @@ Identifier    = {Letter}({AlphaNumeric} | [_])*
 <Class Declaration> ::= 'class' <Class Identification> 
 <Class Identification> ::= Identifier <Class Heritage> '{' <Class Body> '}'
 <Class Heritage> ::= 'extends' Identifier | <>
-<Class Body> ::= <Class Attributes> <Class Constants> <Class Methods>
+<Class Body> ::= <Class Attributes> <Class Methods>
 <Class Attributes> ::= <>
-<Class Constants> ::= <>
 <Class Methods> ::= <>
 
