@@ -1,4 +1,4 @@
-    "Name"    = VariablesDeclaration
+"Name"    = VariablesDeclaration
 "Author"  = Adriel  
 "Version" = Example
 "About"   = This grammar demonstrates Variables Declaration
@@ -14,8 +14,9 @@ RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
 
 <Attribution> ::= Identifier <Attribution2>               
 <Attribution2> ::= '=' <Attribution3>                   
-<Attribution3>  ::=  <Call> ';' | Identifier ';'
+<Attribution3>  ::=  <Call> ';' | Identifier ';' | <Expression> ';'
                  
+
 
 
 <Call>   ::= Identifier<Complement>        
@@ -26,6 +27,61 @@ RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
 <x> ::= <> |<Array> | <DoubleArray>
 <Array> ::= '['IntegerNumber']'
 <DoubleArray> ::= '['IntegerNumber']''['IntegerNumber']'        
+
                                   
 
+
+
+<Expression> ::= <And Exp> <A>
+
+<A> ::= '||' <Expression>
+        | <> 
+            
+<And Exp> ::= <Rel Exp> <B>   
+
+<B> ::= '&&' <And Exp>
+        | <> 
+
+<Rel Exp>::= <Add Exp> <C>
+            
+<C> ::= RelationalOperator <Rel Exp> 
+        | <>
+
+<Add Exp> ::= <Mult Exp> <D>
+
+<D> ::= '+' <Add Exp> 
+        | '-' <Add Exp>
+        | <>
+
+<Mult Exp> ::= <Neg Exp> <E>
+
+<E> ::= '*' <Mult Exp> 
+        | '/' <Mult Exp>
+        | <>
+
+<Neg Exp>  ::= '-' <F>
+               |  <Value> <G>
+               | '!' <Value>
+               | '++' <Value>
+                       
+<F> ::= '-' <Value> 
+        | <Value>
+
+<G> ::= '--' 
+     | '++' 
+     | <>
+
+<Value> ::= Identifier
+            | IntegerNumber
+            | FloatNumber
+            | <Vector>
+            |  '(' <Expression> ')'
+
+<Vector> ::= Identifier '['<Index>']' <Matrix>            
+
+<Index> ::= Identifier 
+         | IntegerNumber
+    
+<Matrix> ::= '['<Index>']'
+            | <>
 
