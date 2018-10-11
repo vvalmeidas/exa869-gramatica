@@ -1,9 +1,9 @@
 ﻿"Name" = 'Gramatica - WriteDeclaration'
 "Author" = 'Aloisio Junior'
-"Version"  = '1.0'
+"Version"  = '1.1'
 "About" = 'Gramática para a declaração do comando write'
         
-"Case Sensitive" = False
+"Case Sensitive" = True
                  
 "Start Symbol" = <Declaration>
                
@@ -11,41 +11,49 @@
 ! Character Sets
 ! -------------------------------------------------
 
-{String Chars} = {Printable} + {HT} - ["\]
+{String} = {Printable} - ["]
 
+                 
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
 
-Symbols = {Printable}
+Identifier = {Letter}({AlphaNumeric} | [_])*
 
-BodyCharacters = ({String Chars} | '\' {Printable} )*
+BodyCharacters = '"' ({String})* '"'
                
-Number = ({Digit})*
+IntegerNumber = {Digit}+
 
 
 ! -------------------------------------------------
 ! Rules
 ! -------------------------------------------------
 
-! The grammar starts below               
-<Declaration> ::= <WriteDeclaration> 
-               
-
-<ConstantDeclaration> ::= write '(' <Expressions> ')'';'
-                       
-<Expressions> ::= <Expression> 
-             | <Expression> <Expressions>
+! The grammar starts below  
              
+<Declaration> ::= <WriteDeclarations> 
+               
+<WriteDeclarations> ::= <WriteDeclaration> <WDeclaration>
+                     
+<WDeclaration> ::= <> | <WriteDeclarations>
+               
+<WriteDeclaration> ::= 'write' '(' <Expressions> ')'';'
+                       
+<Expressions> ::= <Expression> <Expre>
+
+<Expre> ::= <>
+        | <Expressions>  
+
 <Expression> ::= <BodyExpression>
               | ',' <BodyExpression>
               
 <BodyExpression> ::= <CadeOfCharacters>
-                  | <valueConstant>
-                  | <valueVariable>
-                  | <GetAttribute> ! NECESSÁRIO DA IMPLEMENTAÇÃO DE OUTRO MEMBRO
-                  | <valeuVariable> '['Number']'
-                  | <valeuVariable>'['Number']''['Number']'
+                  | Identifier
+                  | Identifier '.' Identifier
+                  | Identifier '['IntegerNumber']'
+                  | Identifier'['IntegerNumber']''['IntegerNumber']'
                   
-<CadeOfCharacters> ::= '"'BodyCharacters'"'
+<CadeOfCharacters> ::= BodyCharacters
+                    
+
                     
