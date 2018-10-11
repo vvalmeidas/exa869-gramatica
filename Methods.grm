@@ -15,8 +15,7 @@ Number = {Number}+
 
         <Call>   ::= Identifier<Complement>        
         <Complement> ::= '.'Identifier<Complement> | <Complement1>                      
-        <Complement1> ::= '('<Param>')' <Complement2> 
-        <Complement2> ::= ';'|<>        
+        <Complement1> ::= '('<Param>')' 
         
    
         <Param> ::=  Identifier<x><MoreParam> | <>            
