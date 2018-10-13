@@ -1,0 +1,20 @@
+
+"Name"    = 'ArrayIndex'
+"Author"  = 'Almir Neto'
+"About"   = 'This piece of a grammar will standardize arrays index'
+
+"Start Symbol" = <Call>
+
+
+! The identifier is defined as a single letter followed by zero or more
+! alphumeric characters
+
+Identifier  = {Letter}({Alphanumeric}|[_])*
+Number = {Digit}+
+
+
+        <Call>   ::= <Array>
+                  <Array> ::= '['<Index>']'<DoubleArray> | <>
+                  <DoubleArray> ::= '['<Index>']' | <>
+                  <Index> ::= Number | Identifier
+
