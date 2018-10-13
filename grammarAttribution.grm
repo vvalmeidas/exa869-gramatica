@@ -5,28 +5,30 @@
 "Case Sensitive" = True
 "Start Symbol"   = <Attribution>
 
+{String Chars} = {Printable} + {HT} - ["]
+               
 Identifier =  {Letter} ({AlphaNumeric} | '_')*
 FloatNumber = {Digit}+('.'{Digit}+)+
 IntegerNumber = {Digit}+
 RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
-
+CadeCaracters = '"' ({String Chars})* '"'
                            
 
-<Attribution> ::= Identifier <Attribution2>               
+<Attribution> ::= Identifier <Array Verification> <Attribution2> ';' 
 <Attribution2> ::= '=' <Attribution3>                   
-<Attribution3>  ::=  <Call> ';' | Identifier ';' | <Expression> ';'
+<Attribution3>  ::=  <Call> | <Expression> | CadeCaracters
                  
 
 
 
-<Call>   ::= Identifier<Complement>        
+<Call>   ::= Identifier <Complement>        
 <Complement> ::= '.'Identifier<Complement> | <Complement1>
 <Complement1> ::= '('<Param>')'  
-<Param> ::=  Identifier<x><MoreParam> | <>            
+<Param> ::=  Identifier <Array Verification> <MoreParam> | <>            
 <MoreParam> ::= ','<Param> | <>
-<x> ::= <> |<Array> | <DoubleArray>
-<Array> ::= '['IntegerNumber']'
-<DoubleArray> ::= '['IntegerNumber']''['IntegerNumber']'        
+<Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
+<DoubleArray> ::= '['<Array Index>']' | <>
+<Array Index> ::= IntegerNumber | Identifier       
 
                                   
 
