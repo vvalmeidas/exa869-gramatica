@@ -9,7 +9,7 @@ Identifier  = {Letter} ({AlphaNumeric} | '_')*
 Type  = ('int' | 'float' | 'bool' | 'string')
       
 
-<Declaration>   ::= 'Variables' '{' <Variable> '}' 
+<Declaration>   ::= 'variables' '{' <Variable> '}' 
 <Variable>    ::= <Type> <Variable2>
 <Variable2>    ::= <Name> <Variable3>
 <Variable3>    ::= <Variable> | <>               
