@@ -40,8 +40,8 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 <Constant Declaration> ::= const '{' <Constants> '}' | <>                 
 <Constants> ::= <Constant> <More Constants>             
 <More Constants> ::= <> | <Constants>
-<Constant> ::= Type <Atribuition> | <More Atribuitions>  
-More Atribuitions ::= ',' <Atribuition> | ;
+<Constant> ::= Type <Atribuition> | <More Atribuitions>
+<More Atribuitions> ::= ',' <Atribuition> | ;
 <Atribuition> ::= Identifier '=' <value>
 <value> ::= Number | 'true' | 'false' | CadeCaracters
 
