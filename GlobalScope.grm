@@ -1,4 +1,4 @@
-﻿"Name" = 'Global Scope' 
+"Name" = 'Global Scope' 
 "Author"   = 'T03 - EXA 869'
 "Version"  = '1.0'
 "About"   = 'This grammar demonstrate how the global scope will be structured'
@@ -21,7 +21,6 @@ Type  = ('int' | 'float' | 'bool' | 'string')
               
 ! ----------------------------------------------------------------- Rules
 
-
 !Escorpo Global
 <Global> ::= <Constant Declaration> <Class Declaration> <More Classes>
 <More Classes> ::= <Class Declaration> | <>
@@ -40,11 +39,10 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 <Constant Declaration> ::= const '{' <Constants> '}' | <>                 
 <Constants> ::= <Constant> <More Constants>             
 <More Constants> ::= <> | <Constants>
-<Constant> ::= Type <Atribuition> | <More Atribuitions>
-<More Atribuitions> ::= ',' <Atribuition> | ;
+<Constant> ::= Type <Atribuition> | <More Attributions>
+<More Attributions> ::= ',' <Atribuition> | ';'
 <Atribuition> ::= Identifier '=' <value>
 <value> ::= Number | 'true' | 'false' | CadeCaracters
-
 
 !Declaração de variáveis
 <Variable Declaration> ::= 'variables' '{' <Variable> '}'          
@@ -66,5 +64,3 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 <Array Index> ::= Number | Identifier 
 <Return> ::= Identifier | CodeCaracters | Number 
 <Commands>::= !Next episodes
-
-
