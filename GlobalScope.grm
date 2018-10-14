@@ -21,7 +21,7 @@ Type  = ('int' | 'float' | 'bool' | 'string')
               
 ! ----------------------------------------------------------------- Rules
 
-!Escorpo Global
+!Escopo Global
 <Global> ::= <Constant Declaration> <Class Declaration> <More Classes>
 <More Classes> ::= <Class Declaration> | <>
 
