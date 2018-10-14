@@ -1,5 +1,5 @@
 # Problema 2: A "segunda" etapa necessária
-Gramática desenvolvida pela turma T02 da disciplina EXA-869 (MI - Processadores de Linguagens de Programação). 
+Gramática desenvolvida pela turma T02 da disciplina EXA-869 (MI - Processadores de Linguagens de Programação). UEFS - 2018.2.
 
 Turma: 
 - Adriel Brito  
@@ -13,6 +13,3 @@ Turma:
 - Natália Rosa
 - Patricia Carmona
 - Valmir Almeida
-
-
-UEFS - 2018.2
