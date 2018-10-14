@@ -1,4 +1,4 @@
-# exa869-gramatica
+# Problema 2: A "segunda" etapa necessária
 Gramática desenvolvida pela turma T02 da disciplina EXA-869 (MI - Processadores de Linguagens de Programação). 
 
 Turma: 
