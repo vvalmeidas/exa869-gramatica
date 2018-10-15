@@ -18,6 +18,8 @@ Number = {Digit}+('.'{Digit}+)?
 CadeCaracters = '"' ({String Chars})* '"'
               
 Type  = ('int' | 'float' | 'bool' | 'string')
+      
+RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
               
 ! ----------------------------------------------------------------- Rules
 
@@ -62,10 +64,69 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 <Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
 <DoubleArray> ::= '['<Array Index>']' | <>
 <Array Index> ::= Number | Identifier 
-<Return> ::= Identifier | CodeCaracters | Number 
+<Return> ::= Identifier | CadeCaracters | Number 
 <Commands>::= <If Statement> |<>
            
 !Estrutura de seleção if/else
 <If Statement> ::= 'if('<Expression>'){'<Command>'}'<Else Statement>
                 
 <Else Statement> ::= 'else{'<Command>'}' | <>
+                  
+
+!Expressões lógicas, aritméticas e relacionais
+<Expression> ::= <And Exp> <A>
+
+<A> ::= '||' <Expression>
+        | <> 
+            
+<And Exp> ::= <Rel Exp> <B>   
+
+<B> ::= '&&' <And Exp>
+        | <> 
+
+<Rel Exp>::= <Add Exp> <C>
+            
+<C> ::= RelationalOperator <Rel Exp> 
+        | <>
+
+<Add Exp> ::= <Mult Exp> <D>
+
+<D> ::= '+' <Add Exp> 
+        | '-' <Add Exp>
+        | <>
+
+<Mult Exp> ::= <Neg Exp> <E>
+
+<E> ::= '*' <Mult Exp> 
+        | '/' <Mult Exp>
+        | <>
+
+<Neg Exp>  ::= '-' <F>
+               |  <Exp Value> <G>
+               | '!' <H><Exp Value>
+               | '++' <Exp Value>
+                       
+<F> ::= '-' <Exp Value> 
+        | <Exp Value>
+
+<G> ::= '--' 
+     | '++' 
+     | <>
+
+<H> ::= '!'<H> | <> 
+     
+<Exp Value> ::= Identifier <Array Verification>
+            | Number
+            |  '(' <Expression> ')'
+            | <Method Call>
+            
+
+!Chamada de métodos
+<Method Call>   ::= Identifier<Complement>        
+
+<Complement> ::= '.'Identifier<Complement> | <Complement1>                      
+<Complement1> ::= '('<Param>')' 
+           
+<Param> ::=  Identifier<Array Verification><MoreParam> | <>            
+<MoreParam> ::= ','<Param> | <>
+

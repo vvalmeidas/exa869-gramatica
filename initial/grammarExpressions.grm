@@ -39,27 +39,28 @@ RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
         | <>
 
 <Neg Exp>  ::= '-' <F>
-               |  <Value> <G>
-               | '!' <Value>
-               | '++' <Value>
+               |  <Exp Value> <G>
+               | '!' <H><Exp Value>
+               | '++' <Exp Value>
                        
-<F> ::= '-' <Value> 
-        | <Value>
+<F> ::= '-' <Exp Value> 
+        | <Exp Value>
 
 <G> ::= '--' 
      | '++' 
      | <>
 
-<Value> ::= Identifier
-            | IntegerNumber
+<H> ::= '!'<H> | <> ! Permite mais de um '!' seguidos
+     
+<Exp Value> ::= Identifier <Array>
             | FloatNumber
-            | <Vector>
+            | IntegerNumber
             |  '(' <Expression> ')'
 
-<Vector> ::= Identifier '['<Index>']' <Matrix>            
+<Array> ::= '['<Index>']'<Matrix> | <>
 
 <Index> ::= Identifier 
          | IntegerNumber
-    
+         
 <Matrix> ::= '['<Index>']'
             | <>
