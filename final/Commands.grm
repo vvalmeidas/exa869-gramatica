@@ -1,0 +1,71 @@
+﻿"Name" = 'Global Scope + Commands' 
+"Author"   = 'T03 - EXA 869'
+"Version"  = '1.0'
+"About"   = 'This grammar demonstrate how the global scope will be structured with commands, statements and expressions'
+"Case Sensitive" = True
+"Start Symbol" = <Global>
+
+
+! ----------------------------------------------------------------- Sets                   
+{String Chars} = {Printable} + {HT} - ["]
+              
+! ----------------------------------------------------------------- Terminals
+               
+Identifier = {Letter}({AlphaNumeric} | [_])*
+
+Number = {Digit}+('.'{Digit}+)?
+       
+CadeCaracters = '"' ({String Chars})* '"'
+              
+Type  = ('int' | 'float' | 'bool' | 'string')
+              
+! ----------------------------------------------------------------- Rules
+
+!Escopo Global
+<Global> ::= <Constant Declaration> <Class Declaration> <More Classes>
+<More Classes> ::= <Class Declaration> | <>
+
+
+!Declaração de classes
+<Class Declaration> ::= 'class' <Class Identification> 
+<Class Identification> ::= Identifier <Class Heritage> '{' <Class Body> '}'
+<Class Heritage> ::= 'extends' Identifier | <>
+<Class Body> ::= <Class Attributes> <Class Methods>
+<Class Attributes> ::= <Variable Declaration> | <>
+<Class Methods> ::= <Method Declaration> <More Methods> | <>
+                 
+
+!Declaração de constantes
+<Constant Declaration> ::= const '{' <Constants> '}' | <>                 
+<Constants> ::= <Constant> <More Constants>             
+<More Constants> ::= <> | <Constants>
+<Constant> ::= Type <Attribution> | <More Attributions>
+<More Attributions> ::= ',' <Attribution> | ';'
+<Attribution> ::= Identifier '=' <value>
+<value> ::= Number | 'true' | 'false' | CadeCaracters
+
+!Declaração de variáveis
+<Variable Declaration> ::= 'variables' '{' <Variable> '}'          
+<Variable> ::= Type <Variable2>
+<Variable2> ::= <Name> <More Variables>
+<More Variables> ::= <Variable> | <>               
+<Name> ::= Identifier <More Names>                           
+<More Names> ::= ',' <Name> | ';'
+
+
+!Declaração de métodos
+<Method Declaration> ::= Type Identifier '(' <Parameter Declaration> ')''{' <Commands> 'return' <Return> ';' '}'
+                       | 'void' Identifier '(' <Parameter Declaration> ')' '{' <Commands> '}' 
+<More Methods> ::= <Method Declaration> | <>
+<Parameter Declaration> ::= Type Identifier <Array Verification> <More Parameters> | <>
+<More Parameters> ::= ',' <Parameter Declaration> | <>
+<Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
+<DoubleArray> ::= '['<Array Index>']' | <>
+<Array Index> ::= Number | Identifier 
+<Return> ::= Identifier | CodeCaracters | Number 
+<Commands>::= <If Statement> |<>
+           
+!Estrutura de seleção if/else
+<If Statement> ::= 'if('<Expression>'){'<Command>'}'<Else Statement>
+                
+<Else Statement> ::= 'else{'<Command>'}' | <>
