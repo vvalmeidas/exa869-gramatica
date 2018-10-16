@@ -71,7 +71,9 @@ RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
 <If Statement> ::= 'if('<Expression>'){'<Command>'}'<Else Statement>
                 
 <Else Statement> ::= 'else{'<Command>'}' | <>
-                  
+   
+!Estrutura de repetição while               
+<While> ::= 'while(' <Expression> '){' <Command> '}'
 
 !Expressões lógicas, aritméticas e relacionais
 <Expression> ::= <And Exp> <A>
