@@ -132,6 +132,13 @@ RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
 <Param> ::=  Identifier<Array Verification><MoreParam> | <>            
 <MoreParam> ::= ','<Param> | <>
 
+
+!Chamada de atributos
+
+<AttrsCall> ::= <ClassId> '.' <VariablesId>
+<ClassId> ::= Identifier
+<VariablesId> ::= Identifier  
+
 !Estrutura do Read
    
 <Read Statement>   ::= 'read' '(' <Reading_1> ')'';'
