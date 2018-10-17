@@ -1,0 +1,41 @@
+const {
+        float number = 1.2, number2 = 2.3;
+        bool vdd = true, falso = false;
+        int int1 = 1, int2 = 2;
+        string frase = "frase";
+
+}
+
+class MinhaClasse extends OutraClasse{
+    variables {
+        float outronumero;
+        bool vdd;
+        int um;
+        string frase2;
+    }
+    
+    void MetodoVazio(){}
+    
+    int MeuMetodo(int dois, bool isTrue){ 
+        variables {
+            bool mentira;
+        }
+        dois = 2;
+        return dois;
+    }
+    
+   bool MeuMetodo2(){
+        if(vdd == true){
+            return true;
+        }
+        return false;   
+   }
+    
+
+}
+
+class ClasseVazia {}
+
+
+
+
