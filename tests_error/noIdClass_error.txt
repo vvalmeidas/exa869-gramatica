@@ -1,0 +1,9 @@
+const {
+    float number = 1.22
+
+}
+
+
+class {
+
+}

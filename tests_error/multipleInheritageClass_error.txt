@@ -1,0 +1,8 @@
+const {
+    float number = 1.22
+
+}
+
+
+class MinhaClasse extends OutraClasse, List{
+}
