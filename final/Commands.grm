@@ -145,3 +145,12 @@ RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
 <Reading_1> ::= Identifier <Reading_2>
 <Reading_2> ::= <Array Verification> <More Readings>            
 <More Readings> ::= ',' <Reading_1> | <>
+                 
+!Estrutura do Write
+
+<Attribute Verification> ::= '.' <VariablesId> | <>                          
+<WriteDeclaration> ::= 'write' '(' <Expressions> ')'';'
+<Expressions> ::= Identifier <Expre> | CadeCaracters <More Expressions>
+<Expre> ::= <Attribute Verification> <Array Verification> <More Expressions>          
+<More Expressions> ::= ',' <Expressions> | <>
+
