@@ -1,0 +1,9 @@
+class arvore {
+
+plant(){
+    if(){
+        x=5;
+    }
+}
+
+}
