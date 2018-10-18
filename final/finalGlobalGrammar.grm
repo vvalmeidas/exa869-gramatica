@@ -18,6 +18,8 @@ Number = {Digit}+('.'{Digit}+)?
 CadeCaracters = '"' ({String Chars})* '"'
               
 Type  = ('int' | 'float' | 'bool' | 'string')
+     
+RelationalOperator = ( '==' | '>' | '<' | '>=' '<=' '!=')
               
 ! ----------------------------------------------------------------- Rules
 
@@ -32,10 +34,9 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 <Class Identification> ::= Identifier <Class Heritage> '{' <Class Body> '}'
 <Class Heritage> ::= 'extends' Identifier | <>
 <Class Body> ::= <Class Attributes> <Class Methods>
-<Class Attributes> ::= <Variable Declaration> | <>
-<Class Methods> ::= <Method Declaration> <More Methods> | <>
-                 
-
+<Class Attributes> ::= <Variable Declaration> 
+<Class Methods> ::= <Method Declaration> | <>
+           
 
 !Declaração de constantes
 <Constant Declaration> ::= const '{' <Constants> '}' | <>                 
@@ -47,9 +48,8 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 <value> ::= Number | 'true' | 'false' | CadeCaracters
 
 
-
 !Declaração de variáveis
-<Variable Declaration> ::= 'variables' '{' <Variable> '}'          
+<Variable Declaration> ::= 'variables' '{' <Variable> '}' | <>     
 <Variable> ::= Type <Variable2>
 <Variable2> ::= <Name> <More Variables>
 <More Variables> ::= <Variable> | <>               
@@ -58,18 +58,20 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 
 
 !Declaração de métodos
-<Method Declaration> ::= 'method'<Method> 
-<Method>::= Type Identifier '(' <Parameter Declaration> ')''{' <Commands> 'return' <Return> ';' '}'
-                       | 'void' Identifier '(' <Parameter Declaration> ')' '{' <Commands> '}' 
-<More Methods> ::= <Method Declaration> | <>
+<Method Declaration> ::= 'method'<Method> <More Methods>
+<Method>::= Type Identifier '(' <Parameter Declaration> ')''{' <Variable Declaration> <Commands> <Return> ';' '}'
+                       | 'void' Identifier '(' <Parameter Declaration> ')' '{' <Variable Declaration> <Commands> '}' 
+<More Methods> ::= <Method Declaration> | <>      
 <Parameter Declaration> ::= <Parameter Declaration2> | <>
 <Parameter Declaration2> ::= Type Identifier <Array Verification> <More Parameters>               
 <More Parameters> ::= ',' <Parameter Declaration2> | <>
 <Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
 <DoubleArray> ::= '['<Array Index>']' | <>
 <Array Index> ::= Number | Identifier 
-<Return> ::= Identifier | <Value>
-<Commands>::= <If Statement><Commands> | <> | <While Statement><Commands> | <Read Statement><Commands> | <Method Call><Commands> | <AttrsCall><Commands> | <Write Statement><Commands>
+<Return> ::= 'return' <Return> 
+          <Return1> ::= Identifier <Array Verification> | <value>
+<Commands>::= <If Statement><Commands> | <> | <While Statement><Commands> | <Read Statement><Commands>
+            | <Method Call>';'<Commands> | <Attribution>';'<Commands> | <Write Statement><Commands>
            
 !Estrutura de seleção if/else
 <If Statement> ::= 'if('<Expression>')' 'then' '{'<Commands>'}'<Else Statement>
@@ -78,6 +80,12 @@ Type  = ('int' | 'float' | 'bool' | 'string')
    
 !Estrutura de repetição while               
 <While Statement> ::= 'while(' <Expression> ')' '{' <Commands> '}'
+
+!Estrutura de atribuição
+<Attribution> ::= <Attribution2> <Array Verification> <Attribution3>  
+<Attribution2> ::= <Attribute Call>| Identifier
+<Attribution3> ::= '=' <Attribution4>                   
+<Attribution4>  ::=  <Expression> | CadeCaracters 
 
 !Expressões lógicas, aritméticas e relacionais
 <Expression> ::= <And Exp> <A>
@@ -125,6 +133,8 @@ Type  = ('int' | 'float' | 'bool' | 'string')
             | Number
             |  '(' <Expression> ')'
             | <Method Call>
+            | <Attribute Call>
+            | 'true' | 'false' 
             
 
 !Chamada de métodos
@@ -140,7 +150,7 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 
 !Chamada de atributos
 
-<AttrsCall> ::= <ClassId> '.' <VariablesId>
+<Attribute Call> ::= <ClassId> '.' <VariablesId>
 <ClassId> ::= Identifier
 <VariablesId> ::= Identifier  
 
