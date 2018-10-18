@@ -14,9 +14,9 @@ class MinhaClasse extends OutraClasse{
         string frase2;
     }
     
-    void MetodoVazio(){}
+    method void MetodoVazio(){}
     
-    int MeuMetodo(int dois, bool isTrue){ 
+    method int MeuMetodo(int dois, bool isTrue){ 
         variables {
             bool mentira;
         }
@@ -24,7 +24,7 @@ class MinhaClasse extends OutraClasse{
         return dois;
     }
     
-   bool MeuMetodo2(){
+   method bool MeuMetodo2(){
         if(vdd == true){
             return true;
         }
