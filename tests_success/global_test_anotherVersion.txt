@@ -1,0 +1,24 @@
+class exemplo {
+
+   variables {
+
+     int numero;
+     bool var; 	
+
+	
+   }
+
+   method bool metodo (){
+	if (a == 1){
+	   a = 2;	
+	}
+	
+   }
+
+   method void metodo2 (int ex, float b){
+       
+   
+	
+   }	
+
+}
