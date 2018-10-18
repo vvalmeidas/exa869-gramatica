@@ -1,0 +1,15 @@
+const {int tree = 3}
+
+class grammar extends supergrammar {
+    
+
+}
+
+class unitary{
+variables {int arm, master;}
+scan(){}
+
+scan(int var){
+    return 3;
+}
+}
