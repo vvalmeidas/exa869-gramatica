@@ -68,7 +68,7 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' '<=' '!=')
 <Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
 <DoubleArray> ::= '['<Array Index>']' | <>
 <Array Index> ::= Number | Identifier 
-<Return> ::= 'return' <Return> 
+<Return> ::= 'return' <Return1> 
           <Return1> ::= Identifier <Array Verification> | <value>
 <Commands>::= <If Statement><Commands> | <> | <While Statement><Commands> | <Read Statement><Commands>
             | <Method Call>';'<Commands> | <Attribution>';'<Commands> | <Write Statement><Commands>
