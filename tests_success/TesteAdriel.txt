@@ -1,0 +1,15 @@
+const{
+	bool batata = 1;
+	string batata = 1;
+}	
+class batata extends batata{
+	method  batata(int batata){
+		return batata;
+	}	
+}
+
+class batata{
+	variables{
+		float batata;
+	}
+}

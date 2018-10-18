@@ -1,0 +1,10 @@
+class rosa {
+    variables { int azul;
+               bool amarelo;}
+    method int verde (int vermelho, string preto){
+    purpura = "rosa rosa rosa!";
+    metodo(a, b[c]);    
+        return "d";
+    }
+    method void branco(bool d){}
+}
