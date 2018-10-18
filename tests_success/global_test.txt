@@ -25,7 +25,7 @@ class MinhaClasse extends OutraClasse{
     }
     
    method bool MeuMetodo2(){
-        if(vdd == true){
+        if(vdd == true && dois == 2) then{
             return true;
         }
         return false;   
