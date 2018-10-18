@@ -36,13 +36,16 @@ Type  = ('int' | 'float' | 'bool' | 'string')
 <Class Methods> ::= <Method Declaration> <More Methods> | <>
                  
 
+
 !Declaração de constantes
 <Constant Declaration> ::= const '{' <Constants> '}' | <>                 
 <Constants> ::= <Constant> <More Constants>             
 <More Constants> ::= <> | <Constants>
-<Constant> ::= Type <Atribuition> | ',' <Atribuition>   
-<Atribuition> ::= Identifier '=' <value>
-<Value> ::= Number | 'true' | 'false' | CadeCaracters
+<Constant> ::= Type <Attribution> | <More Attributions>
+<More Attributions> ::= ',' <Attribution> | ';'
+<Attribution> ::= Identifier '=' <value>
+<value> ::= Number | 'true' | 'false' | CadeCaracters
+
 
 
 !Declaração de variáveis
