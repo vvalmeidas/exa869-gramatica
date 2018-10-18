@@ -1,0 +1,6 @@
+class arvore {
+
+print(){
+    int a = 5;
+}
+}
