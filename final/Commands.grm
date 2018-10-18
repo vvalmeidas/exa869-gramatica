@@ -68,7 +68,7 @@ RelationalOperator = ('>' | '<' | '<=' | '>=' | '==' | '!=')
 <Commands>::= <If Statement> |<>
            
 !Estrutura de seleção if/else
-<If Statement> ::= 'if('<Expression>'){'<Command>'}'<Else Statement>
+<If Statement> ::= 'if('<Expression>')''then'{'<Command>'}'<Else Statement>
                 
 <Else Statement> ::= 'else{'<Command>'}' | <>
    
