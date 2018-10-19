@@ -48,7 +48,7 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <Variable> ::= Type <Variable2> | Identifier <Variable2>
 <Variable2> ::= <Name> <More Variables>
 <More Variables> ::= <Variable> | <>               
-<Name> ::= Identifier <More Names>                           
+<Name> ::= Identifier<Array Verification><More Names>                           
 <More Names> ::= ',' <Name> | ';'
 
 !Declaração de métodos
@@ -133,9 +133,9 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <Method Call>   ::= Identifier<Complement>        
 <Complement> ::= '.'Identifier<Complement> | <Complement1>                      
 <Complement1> ::= '('<Param>')'   
-<Param> ::=  <> | <Exp Value><MoreParam> | CadeCaracters<MoreParam>           
+<Param> ::=  <> | <Expression><MoreParam> | CadeCaracters<MoreParam>      
 <MoreParam> ::= ','<ObrigatoryParam> | <>
-<ObrigatoryParam> ::= <Exp Value><MoreParam> | CadeCaracters<MoreParam>
+<ObrigatoryParam> ::= <Expression><MoreParam> | CadeCaracters<MoreParam>
 
 !Chamada de atributos
 <Attribute Call> ::= Identifier <Attributes>
