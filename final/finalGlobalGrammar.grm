@@ -5,7 +5,6 @@
 "Case sensitive" = true          
 "Start Symbol" = <Global>
 
-
 ! ----------------------------------------------------------------- Sets                   
 {String Chars} = {Printable} + {HT} - ["]
               
@@ -17,50 +16,43 @@ Number = {Digit}+('.'{Digit}+)?
        
 CadeCaracters = '"' ({String Chars})* '"'
               
-Type  = ('int' | 'float' | 'bool' | 'string')
+Type  = ('int' | 'float' | 'bool' | 'string' | 'void')
      
-RelationalOperator = ( '==' | '>' | '<' | '>=' '<=' '!=')
+RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
               
 ! ----------------------------------------------------------------- Rules
 
-
 !Escorpo Global
 <Global> ::= <Constant Declaration> <Class Declaration> <More Classes>
-<More Classes> ::= <Class Declaration> | <>
-
+<More Classes> ::= <Class Declaration><More Classes> | <>
 
 !Declaração de classes
-<Class Declaration> ::= 'class' <Class Identification> 
+<Class Declaration> ::= 'class' <Class Identification>
 <Class Identification> ::= Identifier <Class Heritage> '{' <Class Body> '}'
 <Class Heritage> ::= 'extends' Identifier | <>
 <Class Body> ::= <Class Attributes> <Class Methods>
 <Class Attributes> ::= <Variable Declaration> 
 <Class Methods> ::= <Method Declaration> | <>
            
-
 !Declaração de constantes
-<Constant Declaration> ::= const '{' <Constants> '}' | <>                 
+<Constant Declaration> ::= 'const' '{' <Constants> '}' | <>                 
 <Constants> ::= <Constant> <More Constants>             
 <More Constants> ::= <> | <Constants>
-<Constant> ::= Type <Attribution> | <More Attributions>
-<More Attributions> ::= ',' <Attribution> | ';'
-<Attribution> ::= Identifier '=' <value>
-<value> ::= Number | 'true' | 'false' | CadeCaracters
-
+<Constant> ::= Type <ConstAttribution> | <More Attributions>
+<More Attributions> ::= ',' <ConstAttribution> | ';'
+<ConstAttribution> ::= Identifier '=' <Value>
+<Value> ::= Number | 'true' | 'false' | CadeCaracters
 
 !Declaração de variáveis
 <Variable Declaration> ::= 'variables' '{' <Variable> '}' | <>     
-<Variable> ::= Type <Variable2>
+<Variable> ::= Type <Variable2> | Identifier <Variable2>
 <Variable2> ::= <Name> <More Variables>
 <More Variables> ::= <Variable> | <>               
 <Name> ::= Identifier <More Names>                           
 <More Names> ::= ',' <Name> | ';'
 
-
 !Declaração de métodos
-<Method Declaration> ::= 'method'<Method> <More Methods>
-<Method>::= Type Identifier '(' <Parameter Declaration> ')''{' <Variable Declaration> <Commands> <Return> ';' '}'
-                       | 'void' Identifier '(' <Parameter Declaration> ')' '{' <Variable Declaration> <Commands> '}' 
+<Method Declaration> ::= 'method' Type Identifier '(' <Parameter Declaration> ')' '{' <Variable Declaration> <Commands> '}' <More Methods>
 <More Methods> ::= <Method Declaration> | <>      
 <Parameter Declaration> ::= <Parameter Declaration2> | <>
 <Parameter Declaration2> ::= Type Identifier <Array Verification> <More Parameters>               
@@ -69,23 +61,23 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' '<=' '!=')
 <DoubleArray> ::= '['<Array Index>']' | <>
 <Array Index> ::= Number | Identifier 
 <Return> ::= 'return' <Return1> 
-          <Return1> ::= Identifier <Array Verification> | <value>
+<Return1> ::= Identifier <Array Verification> | <Value>
 <Commands>::= <If Statement><Commands> | <> | <While Statement><Commands> | <Read Statement><Commands>
-            | <Method Call>';'<Commands> | <Attribution>';'<Commands> | <Write Statement><Commands>
+            | <Method Call>';'<Commands> | <Attribution>';'<Commands> | <Write Statement><Commands> | <Return>';'
            
 !Estrutura de seleção if/else
-<If Statement> ::= 'if('<Expression>')' 'then' '{'<Commands>'}'<Else Statement>
+<If Statement> ::= 'if''('<Expression>')' 'then' '{'<Commands>'}'<Else Statement>
                 
-<Else Statement> ::= 'else{'<Commands>'}' | <>
+<Else Statement> ::= 'else''{'<Commands>'}' | <>
    
 !Estrutura de repetição while               
-<While Statement> ::= 'while(' <Expression> ')' '{' <Commands> '}'
+<While Statement> ::= 'while''(' <Expression> ')' '{' <Commands> '}'
 
 !Estrutura de atribuição
-<Attribution> ::= <Attribution2> <Array Verification> <Attribution3>  
-<Attribution2> ::= <Attribute Call>| Identifier
-<Attribution3> ::= '=' <Attribution4>                   
-<Attribution4>  ::=  <Expression> | CadeCaracters 
+<Attribution> ::= <Variables> <Array Verification> <Normal Attribution2>
+<Variables> ::= <Attribute Call>| Identifier
+<Normal Attribution2> ::= '=' <Normal Attribution3>                   
+<Normal Attribution3>  ::=  <Expression> | CadeCaracters
 
 !Expressões lógicas, aritméticas e relacionais
 <Expression> ::= <And Exp> <A>
@@ -119,6 +111,7 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' '<=' '!=')
                |  <Exp Value> <G>
                | '!' <H><Exp Value>
                | '++' <Exp Value>
+               | '--'<Exp Value>
                        
 <F> ::= '-' <Exp Value> 
         | <Exp Value>
@@ -136,36 +129,29 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' '<=' '!=')
             | <Attribute Call>
             | 'true' | 'false' 
             
-
 !Chamada de métodos
 <Method Call>   ::= Identifier<Complement>        
-
 <Complement> ::= '.'Identifier<Complement> | <Complement1>                      
-<Complement1> ::= '('<Param>')' 
-           
-<Param> ::=  Identifier<Array Verification><MoreParam> | <>            
+<Complement1> ::= '('<Param>')'   
+<Param> ::=  <> | <Exp Value><MoreParam> | CadeCaracters<MoreParam>           
 <MoreParam> ::= ','<ObrigatoryParam> | <>
-<ObrigatoryParam> ::= Identifier<Array Verification><MoreParam> 
-
+<ObrigatoryParam> ::= <Exp Value><MoreParam> | CadeCaracters<MoreParam>
 
 !Chamada de atributos
-
-<Attribute Call> ::= <ClassId> '.' <VariablesId>
-<ClassId> ::= Identifier
-<VariablesId> ::= Identifier  
-
+<Attribute Call> ::= Identifier <Attributes>
+<Attributes> ::= '.' Identifier <More Attributes>
+<More Attributes> ::= <Attributes> | <> 
+                   
 !Estrutura do Read
-   
-<Read Statement>   ::= 'read(' <Reading_1> ')' ';'
+<Read Statement>   ::= 'read''(' <Reading_1> ')' ';'
 <Reading_1> ::= Identifier <Reading_2>
 <Reading_2> ::= '.'Identifier<Reading_2> | <Reading_3>             
 <Reading_3> ::= <Array Verification> <More Readings>            
 <More Readings> ::= ',' <Reading_1> | <>
                  
 !Estrutura do Write
-
-<Write Statement> ::= 'write('<Writing_1>')' ';'
-<Writing_1> ::= Identifier <Writing_2>
+<Write Statement> ::= 'write''('<Writing_1>')' ';'
+<Writing_1> ::= Identifier <Writing_2> | CadeCaracters<More Writings>
 <Writing_2> ::= '.'Identifier<Writing_2> | <Writing_3>              
 <Writing_3> ::= <Array Verification> <More Writings>            
 <More Writings> ::= ',' <Writing_1> | <>
