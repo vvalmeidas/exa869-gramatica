@@ -1,0 +1,60 @@
+const {
+    int a = 2, b = 4, c = 8;
+    float teste = 2.3, dois = 8.0;
+    string frase = "essa eh uma frase!";
+    bool verdade = true;
+}
+
+class animal {    
+    variables{
+        string nome, especie;
+        int idade;
+        float peso;
+    }            
+}
+
+class pessoa extends animal {
+
+   method int calculaIdade(int ano_de_nascimento){
+           
+        variables{
+            int idade;
+        }
+                
+        if(ano_de_nascimento > 0) then {
+            idade = 2018 - ano_de_nascimento;            
+        }
+        else {
+           write( "ano: ", ano_de_nascimento, "invalido!");
+           while(ano_de_nascimento <= 0){
+                write("Insira um ano valido");
+                read(ano_de_nascimento);
+           }
+        }        
+       return idade;       
+    }                    
+
+}
+
+class funcionario extends pessoa {
+
+    variables{
+        string nomes[10];
+        int idade, i;
+        float peso;
+        pessoa objeto_pessoa;            
+    }        
+
+    method void main(){
+        i = 0;
+        idade = objeto_pessoa.calculaIdade(1997);
+        adiciona_funcionario("Joao");
+    
+    }
+    
+    method int adiciona_funcionario(string nome_func, pessoa teste_pessoa){
+        nomes[i] = nome_func;
+        i++;  
+        idade = teste_pessoa.idade + 2 * 3;
+    }  
+} 

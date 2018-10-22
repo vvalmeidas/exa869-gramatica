@@ -55,7 +55,8 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <Method Declaration> ::= 'method' Type Identifier '(' <Parameter Declaration> ')' '{' <Variable Declaration> <Commands> '}' <More Methods>
 <More Methods> ::= <Method Declaration> | <>      
 <Parameter Declaration> ::= <Parameter Declaration2> | <>
-<Parameter Declaration2> ::= Type Identifier <Array Verification> <More Parameters>               
+<Parameter Declaration2> ::= <Param Type> Identifier <Array Verification> <More Parameters>
+<Param Type> ::= Type | Identifier              
 <More Parameters> ::= ',' <Parameter Declaration2> | <>
 <Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
 <DoubleArray> ::= '['<Array Index>']' | <>
@@ -74,9 +75,10 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <While Statement> ::= 'while''(' <Expression> ')' '{' <Commands> '}'
 
 !Estrutura de atribuição
-<Attribution> ::= <Variables> <Array Verification> <Normal Attribution2>
-<Variables> ::= <Attribute Call>| Identifier
-<Normal Attribution2> ::= '=' <Normal Attribution3>                   
+<Attribution> ::= <Increment> <Variables> <Array Verification> | <Variables> <Array Verification> <Normal Attribution2>
+<Increment> ::= '++' | '--'
+<Variables> ::= <Attribute Call> | Identifier
+<Normal Attribution2> ::= '=' <Normal Attribution3> | <Increment>                  
 <Normal Attribution3>  ::=  <Expression> | CadeCaracters
 
 !Expressões lógicas, aritméticas e relacionais

@@ -1,22 +1,22 @@
 const{
-	int a = 3,  b = 34, c = 50;
-	bool teste = true;
-	float f = 6565.5;
-	string = "testando gramatica";
+    int a = 3,  b = 34, c = 50;
+    bool teste = true;
+    float f = 6565.5;
+    string talcoisa = "testando gramatica";
 }
 
 class Gramatica{
-	
-	variables {
-		int a;
-		bool kkkj;
-		float meuDeos;
-		string testandoDenovo;
-	}
+    
+    variables {
+        int a;
+        bool kkkj;
+        float meuDeos;
+        string testandoDenovo;
+    }
 
-	method void testandoSemRetorno(int param){
-		if(something == 3){
-			chamarMetodo(param, outro);
-		}
-	}
+    method void testandoSemRetorno(int param){
+        if(something == 3) then {
+            chamarMetodo(param, outro);
+        }
+    }
 }
