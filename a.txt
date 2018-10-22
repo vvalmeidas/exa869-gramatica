@@ -1,0 +1,10 @@
+V: A, B, C, D, E, F
+T: g, h, i, j, l, m, n
+S: A
+P:
+A -> gB
+B -> hCiDj
+C -> lh|$
+D -> EF
+E -> m
+F -> n|$
