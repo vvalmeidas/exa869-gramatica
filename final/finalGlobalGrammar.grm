@@ -52,15 +52,15 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <More Names> ::= ',' <Name> | ';'
 
 !Declaração de métodos
-<Method Declaration> ::= 'method' Type Identifier '(' <Parameter Declaration> ')' '{' <Variable Declaration> <Commands> '}' <More Methods>
+<Method Declaration> ::= 'method' <Type> Identifier '(' <Parameter Declaration> ')' '{' <Variable Declaration> <Commands> '}' <More Methods>
 <More Methods> ::= <Method Declaration> | <>      
 <Parameter Declaration> ::= <Parameter Declaration2> | <>
-<Parameter Declaration2> ::= <Param Type> Identifier <Array Verification> <More Parameters>
-<Param Type> ::= Type | Identifier              
+<Parameter Declaration2> ::= <Type> Identifier <Array Verification> <More Parameters>
+<Type> ::= Type | Identifier              
 <More Parameters> ::= ',' <Parameter Declaration2> | <>
 <Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
 <DoubleArray> ::= '['<Array Index>']' | <>
-<Array Index> ::= Number | Identifier 
+<Array Index> ::= <Add Exp>
 <Return> ::= 'return' <Return1> 
 <Return1> ::= Identifier <Array Verification> | <Value>
 <Commands>::= <If Statement><Commands> | <> | <While Statement><Commands> | <Read Statement><Commands>
@@ -157,3 +157,4 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <Writing_2> ::= '.'Identifier<Writing_2> | <Writing_3>              
 <Writing_3> ::= <Array Verification> <More Writings>            
 <More Writings> ::= ',' <Writing_1> | <>
+
