@@ -1,0 +1,22 @@
+class Classe_Principal {
+    variables { int varTest_1;
+               bool varTest_1;}
+    method int methodTest_1 (int varTest_1, int varTest_1){
+    
+    read (varTest_1, varTest_1 [a][a]);
+    
+    if (((a>b)-3)++) then {}
+    else{
+        return 2;
+    }
+    if (a--) then {}
+    
+    metodo(a, b [c][d]);    
+        return "d";
+    }
+    method void branco(bool d){}
+    
+    method int main (){}
+}
+
+class Classe_Principal extends Classe_Principal {}
