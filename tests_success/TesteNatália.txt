@@ -12,7 +12,7 @@ class Classe_Principal {
     if (a--) then {}
     while (a+b){}
     
-    metodo(a, b [c][d]);    
+    metodo(a, b [c++][d]);    
         return "d";
     }
     method void branco(bool d){}
