@@ -1,0 +1,82 @@
+const {
+    int numeroAndar=0, i=0, pessoas=5;
+    float pesoPessoas = 0;
+    string msg = "Elevador com problema";
+    bool isBroken = false, isInNarnia = false;
+}
+
+
+class Elevador {
+
+    variables{
+        string fabricante, modelo;
+        int anoFabricacao;
+        float capaxidadeMaxima;
+    }
+}
+
+class elevadorPredio extends Elevador {
+
+    method bool verificaFuncionamento (){
+        variables{
+            float pesoMaximo;
+            int pessoasCelulares[20];
+        }
+        
+        if(pesoPessoas > 0) then{
+            pesoMaximo = pesoPessoas;
+            if (pesoMaximo > 1000) then {
+                write (msg,". Portando um total de", pessoas, "pessoas.");
+                
+                isBroken = true;
+            }
+        }
+        else {
+            write ("Elevador vazio!");
+        }
+        return isBroken;
+    }
+
+    method bool verificaNarnia (){
+        variables{
+            float num;
+        }
+
+        num = 0;
+
+        if (numeroAndar == 15) then {
+            i=33;
+            if (pessoas == 7) then {
+                num = numeroAndar + i + pessoas + pesoPessoas;
+                if (num > 777) then {
+                    isInNarnia = true;
+                    write ("Partiu pra terra da doidera! To chegando, Aslan! HUHUHUHUHU!");
+                }
+            }
+            else {
+
+            }
+        }
+        else {
+
+        }
+        return isInNarnia;
+    }
+
+    method int calculosAleatorio (){
+        variables{
+            float num, i, k, j;
+        }
+
+        num = 0;
+        i = 400;
+        k=100;
+        j=0;
+
+        j = 3 + pessoas;
+        num = (i + j) * k;
+
+        return num;
+
+    }
+}
