@@ -5,11 +5,12 @@ class Classe_Principal {
     
     read (varTest_1, varTest_1 [a][a]);
     
-    if (((a>b)-3)++) then {}
+    if (((a>b)-3)++) then {} 
     else{
         return 2;
     }
     if (a--) then {}
+    while (a+b){}
     
     metodo(a, b [c][d]);    
         return "d";
