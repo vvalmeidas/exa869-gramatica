@@ -75,9 +75,10 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <While Statement> ::= 'while''(' <Expression> ')' '{' <Commands> '}'
 
 !Estrutura de atribuição
-<Attribution> ::= <Increment> <Variables> <Array Verification> | <Variables> <Array Verification> <Normal Attribution2>
+<Attribution> ::= <Increment><Variables> | <Variables><Normal Attribution2>
 <Increment> ::= '++' | '--'
-<Variables> ::= <Attribute Call> | Identifier
+<Variables> ::= Identifier<Array Verification><Variables_2>
+<Variables_2> ::= '.'Identifier<Array Verification><Variables_2> | <>          
 <Normal Attribution2> ::= '=' <Normal Attribution3> | <Increment>                  
 <Normal Attribution3>  ::=  <Expression> | CadeCaracters
 
@@ -124,37 +125,30 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 
 <H> ::= '!'<H> | <> 
      
-<Exp Value> ::= Identifier <Array Verification>
+<Exp Value> ::= Identifier <Array Verification><Attr>
             | Number
             |  '(' <Expression> ')'
             | <Method Call>
-            | <Attribute Call>
             | 'true' | 'false' 
-            
+
+<Attr> ::= '.'Identifier<Array Verification><Attr> | <>
 !Chamada de métodos
-<Method Call>   ::= Identifier<Complement>        
-<Complement> ::= '.'Identifier<Complement> | <Complement1>                      
+<Method Call>   ::= Identifier<Array Verification><Complement>        
+<Complement> ::= '.'Identifier<Array Verification><Complement> | <Complement1>                      
 <Complement1> ::= '('<Param>')'   
 <Param> ::=  <> | <Expression><MoreParam> | CadeCaracters<MoreParam>      
 <MoreParam> ::= ','<ObrigatoryParam> | <>
 <ObrigatoryParam> ::= <Expression><MoreParam> | CadeCaracters<MoreParam>
-
-!Chamada de atributos
-<Attribute Call> ::= Identifier <Attributes>
-<Attributes> ::= '.' Identifier <More Attributes>
-<More Attributes> ::= <Attributes> | <> 
                    
 !Estrutura do Read
 <Read Statement>   ::= 'read''(' <Reading_1> ')' ';'
-<Reading_1> ::= Identifier <Reading_2>
-<Reading_2> ::= '.'Identifier<Reading_2> | <Reading_3>             
-<Reading_3> ::= <Array Verification> <More Readings>            
+<Reading_1> ::= Identifier<Array Verification><Reading_2>
+<Reading_2> ::= '.'Identifier<Array Verification><Reading_2> | <More Readings>                        
 <More Readings> ::= ',' <Reading_1> | <>
                  
 !Estrutura do Write
 <Write Statement> ::= 'write''('<Writing_1>')' ';'
-<Writing_1> ::= Identifier <Writing_2> | CadeCaracters<More Writings>
-<Writing_2> ::= '.'Identifier<Writing_2> | <Writing_3>              
-<Writing_3> ::= <Array Verification> <More Writings>            
+<Writing_1> ::= Identifier<Array Verification><Writing_2> | CadeCaracters<More Writings>
+<Writing_2> ::= '.'Identifier<Array Verification><Writing_2> | <More Writings>                    
 <More Writings> ::= ',' <Writing_1> | <>
 
