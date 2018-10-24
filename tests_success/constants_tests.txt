@@ -1,18 +1,11 @@
 const {
   int A = 4;
   float BCD = 2.5853;
-}
-
-const {
   bool CONST_BOOL = true;
-}
-  
-const {
-}
-
-const {
   string nome = "Nomeeeee";
   int idade = 32;
   float altura = 1.78;
-  bool estudante = false;  
+  bool estudante = false; 
 }
+
+class classe{}

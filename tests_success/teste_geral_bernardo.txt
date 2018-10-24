@@ -7,9 +7,9 @@ class grammar extends supergrammar {
 
 class unitary{
 variables {int arm, master;}
-scan(){}
+method void scan(){}
 
-scan(int var){
+method int scan(int var){
     return 3;
 }
 }
