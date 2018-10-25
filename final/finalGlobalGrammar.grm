@@ -125,13 +125,13 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 
 <H> ::= '!'<H> | <> 
      
-<Exp Value> ::= Identifier <Array Verification><Attr>
+<Exp Value> ::= <Attr>
             | Number
             |  '(' <Expression> ')'
             | <Method Call>
             | 'true' | 'false' 
-
-<Attr> ::= '.'Identifier<Array Verification><Attr> | <>
+<Attr>::= Identifier <Array Verification><Attr>
+<Attr1> ::= '.'Identifier<Array Verification><Attr1> | <>
 !Chamada de métodos
 <Method Call>   ::= Identifier<Array Verification><Complement>        
 <Complement> ::= '.'Identifier<Array Verification><Complement> | <Complement1>                      
