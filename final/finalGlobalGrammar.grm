@@ -64,7 +64,7 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <Return> ::= 'return' <Return1> 
 <Return1> ::= Identifier <Array Verification> | <Value>
 <Commands>::= <If Statement><Commands> | <> | <While Statement><Commands> | <Read Statement><Commands>
-            | <Method Call>';'<Commands> | <Attribution>';'<Commands> | <Write Statement><Commands> | <Return>';'
+            | <Attribution>';'<Commands> | <Write Statement><Commands> | <Return>';'
            
 !Estrutura de seleção if/else
 <If Statement> ::= 'if''('<Expression>')' 'then' '{'<Commands>'}'<Else Statement>
@@ -75,10 +75,9 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 <While Statement> ::= 'while''(' <Expression> ')' '{' <Commands> '}'
 
 !Estrutura de atribuição
-<Attribution> ::= <Increment><Variables> | <Variables><Normal Attribution2>
+<Attribution> ::= <Increment>Identifier<Array Verification><Attr> | Identifier<Array Verification><Attr><Verif>
+<Verif> ::= <Normal Atrribution2> | <Complement>
 <Increment> ::= '++' | '--'
-<Variables> ::= Identifier<Array Verification><Variables_2>
-<Variables_2> ::= '.'Identifier<Array Verification><Variables_2> | <>          
 <Normal Attribution2> ::= '=' <Normal Attribution3> | <Increment>                  
 <Normal Attribution3>  ::=  <Expression> | CadeCaracters
 
@@ -127,25 +126,24 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
      
 <Exp Value> ::= Number
             |  '(' <Expression> ')'
-            | <Method Call>
+            |  Identifier<Array Verification><Attr><Param2>
             | 'true' | 'false' 
-!Chamada de métodos
-<Method Call>   ::= Identifier<Array Verification><Complement>        
-<Complement> ::= '.'Identifier<Array Verification><Complement> | <Complement1>                      
-<Complement1> ::= '('<Param>')' | <>  
+            
+!Chamada de métodos 
+<Param2>::= <Complement> | <>
+<Complement> ::= '('<Param>')'
 <Param> ::=  <> | <Expression><MoreParam> | CadeCaracters<MoreParam>      
 <MoreParam> ::= ','<ObrigatoryParam> | <>
 <ObrigatoryParam> ::= <Expression><MoreParam> | CadeCaracters<MoreParam>
                    
 !Estrutura do Read
 <Read Statement>   ::= 'read''(' <Reading_1> ')' ';'
-<Reading_1> ::= Identifier<Array Verification><Reading_2>
-<Reading_2> ::= '.'Identifier<Array Verification><Reading_2> | <More Readings>                        
+<Reading_1> ::= Identifier<Array Verification><Attr><More Reading>                
 <More Readings> ::= ',' <Reading_1> | <>
                  
 !Estrutura do Write
 <Write Statement> ::= 'write''('<Writing_1>')' ';'
-<Writing_1> ::= Identifier<Array Verification><Writing_2> | CadeCaracters<More Writings>
-<Writing_2> ::= '.'Identifier<Array Verification><Writing_2> | <More Writings>                    
+<Writing_1> ::= Identifier<Array Verification><Attr><More Writings> | CadeCaracters<More Writings>                    
 <More Writings> ::= ',' <Writing_1> | <>
 
+<Attr> ::= '.'Identifier<Array Verification><Attr> | <>
