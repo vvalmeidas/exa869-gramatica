@@ -1,0 +1,157 @@
+﻿"Name" = 'Global Scope' 
+"Author"   = 'T03 - EXA 869'
+"Version"  = '1.0'
+"About"   = 'This grammar demonstrate how the global scope will be structured'
+"Case sensitive" = true          
+"Start Symbol" = <Global>
+
+! ----------------------------------------------------------------- Sets                   
+{String Chars} = {Printable} + {HT} - ["]
+              
+! ----------------------------------------------------------------- Terminals
+               
+Identifier = {Letter}({AlphaNumeric} | [_])*
+
+Number = {Digit}+('.'{Digit}+)?
+       
+CadeCaracters = '"' ({String Chars})* '"'
+              
+Type  = ('int' | 'float' | 'bool' | 'string' | 'void')
+     
+RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
+              
+! ----------------------------------------------------------------- Rules
+
+!Escorpo Global
+<Global> ::= <Constant Declaration> <Class Declaration> <More Classes>
+<More Classes> ::= <Class Declaration><More Classes> | <>
+
+!Declaração de classes
+<Class Declaration> ::= 'class' <Class Identification>
+<Class Identification> ::= Identifier <Class Heritage> '{' <Class Body> '}'
+<Class Heritage> ::= 'extends' Identifier | <>
+<Class Body> ::= <Class Attributes> <Class Methods>
+<Class Attributes> ::= <Variable Declaration> 
+<Class Methods> ::= <Method Declaration> | <>
+           
+!Declaração de constantes
+<Constant Declaration> ::= 'const' '{' <Constants> '}' | <>                 
+<Constants> ::= <Constant> <More Constants>             
+<More Constants> ::= <> | <Constants>
+<Constant> ::= Type <ConstAttribution> | <More Attributions>
+<More Attributions> ::= ',' <ConstAttribution> | ';'
+<ConstAttribution> ::= Identifier '=' <Value>
+<Value> ::= Number | 'true' | 'false' | CadeCaracters
+
+!Declaração de variáveis
+<Variable Declaration> ::= 'variables' '{' <Variable> '}' | <>     
+<Variable> ::= Type <Variable2> | Identifier <Variable2>
+<Variable2> ::= <Name> <More Variables>
+<More Variables> ::= <Variable> | <>               
+<Name> ::= Identifier<Array Verification><More Names>                           
+<More Names> ::= ',' <Name> | ';'
+
+!Declaração de métodos
+<Method Declaration> ::= 'method' <Type> Identifier '(' <Parameter Declaration> ')' '{' <Variable Declaration> <Commands> '}' <More Methods>
+<More Methods> ::= <Method Declaration> | <>      
+<Parameter Declaration> ::= <Parameter Declaration2> | <>
+<Parameter Declaration2> ::= <Type> Identifier <Array Verification> <More Parameters>
+<Type> ::= Type | Identifier              
+<More Parameters> ::= ',' <Parameter Declaration2> | <>
+<Array Verification> ::= '['<Array Index>']'<DoubleArray> | <>
+<DoubleArray> ::= '['<Array Index>']' | <>
+<Array Index> ::= <Add Exp>
+<Return> ::= 'return' <Return1> 
+<Return1> ::= Identifier <Array Verification> | <Value>
+<Commands>::= <If Statement><Commands> | <> | <While Statement><Commands> | <Read Statement><Commands>
+            | Identifier <Commands2> | <Write Statement><Commands> | <Return>';'
+            
+<Commands2> ::= <Method Call>';'<Commands> | <Attribution>';'<Commands> 
+           
+!Estrutura de seleção if/else
+<If Statement> ::= 'if''('<Expression>')' 'then' '{'<Commands>'}'<Else Statement>
+                
+<Else Statement> ::= 'else''{'<Commands>'}' | <>
+   
+!Estrutura de repetição while               
+<While Statement> ::= 'while''(' <Expression> ')' '{' <Commands> '}'
+
+!Estrutura de atribuição
+<Attribution> ::= <Increment><Variables> | <Variables><Normal Attribution2>
+<Increment> ::= '++' | '--'
+<Variables> ::= <Array Verification><Variables_2>
+<Variables_2> ::= '.'Identifier<Array Verification><Variables_2> | <>          
+<Normal Attribution2> ::= '=' <Normal Attribution3> | <Increment>                  
+<Normal Attribution3>  ::=  <Expression> | CadeCaracters
+
+!Expressões lógicas, aritméticas e relacionais
+<Expression> ::= <And Exp> <A>
+
+<A> ::= '||' <Expression>
+        | <> 
+            
+<And Exp> ::= <Rel Exp> <B>   
+
+<B> ::= '&&' <And Exp>
+        | <> 
+
+<Rel Exp>::= <Add Exp> <C>
+            
+<C> ::= RelationalOperator <Rel Exp> 
+        | <>
+
+<Add Exp> ::= <Mult Exp> <D>
+
+<D> ::= '+' <Add Exp> 
+        | '-' <Add Exp>
+        | <>
+
+<Mult Exp> ::= <Neg Exp> <E>
+
+<E> ::= '*' <Mult Exp> 
+        | '/' <Mult Exp>
+        | <>
+
+<Neg Exp>  ::= '-' <F>
+               |  <Exp Value> <G>
+               | '!' <H><Exp Value>
+               | '++' <Exp Value>
+               | '--'<Exp Value>
+                       
+<F> ::= '-' <Exp Value> 
+        | <Exp Value>
+
+<G> ::= '--' 
+     | '++' 
+     | <>
+
+<H> ::= '!'<H> | <> 
+     
+<Exp Value> ::= Identifier <Array Verification><Attr>
+            | Number
+            |  '(' <Expression> ')'
+            | <Method Call>
+            | 'true' | 'false' 
+
+<Attr> ::= '.'Identifier<Array Verification><Attr> | <>
+        
+!Chamada de métodos
+<Method Call>   ::= <Array Verification><Complement>        
+<Complement> ::= '.'Identifier<Array Verification><Complement> | <Complement1>                      
+<Complement1> ::= '('<Param>')'   
+<Param> ::=  <> | <Expression><MoreParam> | CadeCaracters<MoreParam>      
+<MoreParam> ::= ','<ObrigatoryParam> | <>
+<ObrigatoryParam> ::= <Expression><MoreParam> | CadeCaracters<MoreParam>
+                   
+!Estrutura do Read
+<Read Statement>   ::= 'read''(' <Reading_1> ')' ';'
+<Reading_1> ::= Identifier<Array Verification><Reading_2>
+<Reading_2> ::= '.'Identifier<Array Verification><Reading_2> | <More Readings>                        
+<More Readings> ::= ',' <Reading_1> | <>
+                 
+!Estrutura do Write
+<Write Statement> ::= 'write''('<Writing_1>')' ';'
+<Writing_1> ::= Identifier<Array Verification><Writing_2> | CadeCaracters<More Writings>
+<Writing_2> ::= '.'Identifier<Array Verification><Writing_2> | <More Writings>                    
+<More Writings> ::= ',' <Writing_1> | <>
+

@@ -76,7 +76,7 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
 
 !Estrutura de atribuição
 <Attribution> ::= <Increment>Identifier<Array Verification><Attr> | Identifier<Array Verification><Attr><Verif>
-<Verif> ::= <Normal Atrribution2> | <Complement>
+<Verif> ::= <Normal Attribution2> | <Complement>
 <Increment> ::= '++' | '--'
 <Normal Attribution2> ::= '=' <Normal Attribution3> | <Increment>                  
 <Normal Attribution3>  ::=  <Expression> | CadeCaracters
@@ -138,7 +138,7 @@ RelationalOperator = ( '==' | '>' | '<' | '>=' | '<=' | '!=')
                    
 !Estrutura do Read
 <Read Statement>   ::= 'read''(' <Reading_1> ')' ';'
-<Reading_1> ::= Identifier<Array Verification><Attr><More Reading>                
+<Reading_1> ::= Identifier<Array Verification><Attr><More Readings>                
 <More Readings> ::= ',' <Reading_1> | <>
                  
 !Estrutura do Write
