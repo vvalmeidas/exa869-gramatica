@@ -1,1 +1,0 @@
-write(state,state.aux,state.aux1[1],state.aux2[1][1]," Este é um teste!");
